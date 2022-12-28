@@ -1,0 +1,38 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/FiveDOF.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.12429493702458905 0.07799561259164312 0.9891751377013618 2.030573365278129
+  position 0.4430985070185355 -0.569936105779063 0.3475289561248668
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+FiveDOF {
+}
+DEF DUMMY Solid {
+  translation 0.0938 0 0.2226
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.470588 0
+        roughness 1
+        metalness 0
+      }
+      geometry Sphere {
+        radius 0.01
+        subdivision 3
+      }
+    }
+  ]
+  name "dummy"
+}
