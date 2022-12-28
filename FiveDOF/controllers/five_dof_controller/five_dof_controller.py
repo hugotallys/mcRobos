@@ -11,7 +11,6 @@ if __name__ == "__main__":
     robot = FiveDOF()
 
     # Initial joint configuration
-    # q0 = np.array([0., -np.pi/2, np.pi/2, 0., 0.])
     q0 = np.array([0., -2.199, 1.948, 0.754, 0.])
     robot.setJointPositions(q0)
     robot.delay(1500)
@@ -21,7 +20,7 @@ if __name__ == "__main__":
     joint_distance_values = []
     absolute_error_values = []
 
-    dt = 32 * 1e-3
+    dt = robot.getTimeStep()
     x0 = robot.fkine(q0, pose=True)
     x = x0
 
@@ -46,16 +45,13 @@ if __name__ == "__main__":
         robot.setJointPositions(q)
         x = robot.fkine(q, pose=True)
         joint_dist = robot.joint_distance(q)
-        # np.sqrt(round(np.linalg.det(jac @ jac.T), 2))
 
         joints_values.append(q)
-        joint_distance_values.append(joint_dist)  # medida de manipularidade
+        joint_distance_values.append(joint_dist)
         position_values.append(x)
         absolute_error_values.append(error)
 
         iter_ += 1
-
-    # robot.robot.simulationSetMode(robot.robot.SIMULATION_MODE_PAUSE)
 
     t = np.arange(0, np.array(joints_values).shape[0]*dt, dt)
 
@@ -66,7 +62,7 @@ if __name__ == "__main__":
     position_values = np.array(position_values)
 
     for i in range(5):
-        axs[0, 0].plot(t, joints_values[:, i], label=f"joint{i+1}")
+        axs[0, 0].plot(t, joints_values[:, i], label=str(i+1))
     axs[0, 0].legend(loc=(1.04, 0))
     axs[0, 0].set_title('Joint space')
 
@@ -83,8 +79,11 @@ if __name__ == "__main__":
     axs[1, 1].set_title('Position absolute error')
 
     for ax in axs.flat:
-        ax.set(xlabel='time (s)', ylabel='Magnitude')
+        ax.set(xlabel='time (s)', ylabel='')
         ax.grid()
+
+    axs[0, 0].set(xlabel='', ylabel='')
+    axs[0, 1].set(xlabel='', ylabel='')
 
     axs[0, 1].yaxis.tick_right()
     axs[1, 1].yaxis.tick_right()

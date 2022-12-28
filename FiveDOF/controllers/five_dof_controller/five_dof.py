@@ -35,8 +35,16 @@ class FiveDOF:
         for s in self.sensors:
             s.enable(self.timestep)
 
-    def dh_transform(self, theta, d, a, alpha, offset=0.):
-        theta = theta + offset
+    @staticmethod
+    def cross_product(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+        return np.cross(a,b)
+
+    @staticmethod
+    def pose(r):
+        return r[0:3, -1].reshape(3, 1)
+
+    @staticmethod
+    def dh_transform(theta, d, a, alpha):
         ct, st = np.cos(theta), np.sin(theta)
         ca, sa = np.cos(alpha), np.sin(alpha)
         return np.array([
@@ -71,10 +79,6 @@ class FiveDOF:
             theta=q5, d=0., a=0., alpha=0.
         )
 
-    @staticmethod
-    def pose(r):
-        return r[0:3, -1].reshape(3, 1)
-
     def fkine(self, q, pose=False):
         r = (
             self.TB0 @ self.T01(q[0]) @
@@ -94,19 +98,19 @@ class FiveDOF:
         PE = P5[0:3, -1]
 
         JO1 = np.array([0., 0., 1.]).T
-        JP1 = np.cross(JO1, PE)
+        JP1 = self.cross_product(JO1, PE)
 
         JO2 = P1[0:3, 2]
-        JP2 = np.cross(JO2, PE - P1[0:3, -1])
+        JP2 = self.cross_product(JO2, PE - P1[0:3, -1])
 
         JO3 = P2[0:3, 2]
-        JP3 = np.cross(JO3, PE - P2[0:3, -1])
+        JP3 = self.cross_product(JO3, PE - P2[0:3, -1])
 
         JO4 = P3[0:3, 2]
-        JP4 = np.cross(JO4, PE - P3[0:3, -1])
+        JP4 = self.cross_product(JO4, PE - P3[0:3, -1])
 
         JO5 = P4[0:3, 2]
-        JP5 = np.cross(JO5, PE - P4[0:3, -1])
+        JP5 = self.cross_product(JO5, PE - P4[0:3, -1])
 
         return np.array([JP1, JP2, JP3, JP4, JP5]).T
 
@@ -126,6 +130,9 @@ class FiveDOF:
         return np.array(
             self.dummy.getPosition()
         ).reshape(3, 1)
+
+    def getTimeStep(self):
+        return int(self.timestep) * 1e-3
 
     def delay(self, ms):
         counter = ms / self.timestep
