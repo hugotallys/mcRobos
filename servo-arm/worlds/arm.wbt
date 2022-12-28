@@ -1,0 +1,57 @@
+#VRML_SIM R2022b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/0ca7cb59317bbb21c69a4aa692585675a37de20c/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/0ca7cb59317bbb21c69a4aa692585675a37de20c/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/0ca7cb59317bbb21c69a4aa692585675a37de20c/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "../protos/Servoarm.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.1344081595136285 -0.05200887709149985 0.9895602676744051 3.8729633643191717
+  position 1.222445348047007 1.089966927120262 0.6030756863284408
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+}
+Servoarm {
+  rotation 0 1 0 0
+  controller "servo_arm_controller"
+}
+DEF BEGIN Solid {
+  translation -0.013 0.33 0.07
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.878431 0.105882 0.141176
+        roughness 1
+        metalness 0
+      }
+      geometry Sphere {
+        radius 0.01
+        subdivision 3
+      }
+    }
+  ]
+  name "Begin"
+}
+DEF END Solid {
+  translation 0.007 0.33 0.07
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.819608 0.478431
+        roughness 1
+        metalness 0
+      }
+      geometry Sphere {
+        radius 0.01
+        subdivision 3
+      }
+    }
+  ]
+  name "End"
+}
