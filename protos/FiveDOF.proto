@@ -1,0 +1,285 @@
+#VRML_SIM R2022b utf8
+PROTO FiveDOF [
+    field SFVec3f translation  0 0 0.055
+    field SFString controller "five_dof_controller"
+]
+{
+    Robot {
+        children [
+            Transform {
+            translation IS translation
+            children [
+                HingeJoint {
+                jointParameters HingeJointParameters {
+                    axis 0 0 1
+                    anchor 0 0 0.055
+                }
+                device [
+                    PositionSensor {
+                    name "sensor1"
+                    }
+                    RotationalMotor {
+                    name "joint1"
+                    minPosition -3.1415
+                    maxPosition 3.1415
+                    }
+                ]
+                endPoint Solid {
+                    translation 0 0 0.055
+                    children [
+                    HingeJoint {
+                        jointParameters HingeJointParameters {
+                        axis 0 1 0
+                        }
+                        device [
+                        PositionSensor {
+                            name "sensor2"
+                        }
+                        RotationalMotor {
+                            name "joint2"
+                            minPosition -3.1415
+                        }
+                        ]
+                        endPoint Solid {
+                        rotation -1 7.850447875279517e-17 7.850447875279517e-17 1.5708
+                        children [
+                            HingeJoint {
+                            jointParameters HingeJointParameters {
+                                axis 0 0 1
+                                anchor 0.1175 0 0
+                            }
+                            device [
+                                PositionSensor {
+                                name "sensor3"
+                                }
+                                RotationalMotor {
+                                name "joint3"
+                                minPosition -3.1415
+                                maxPosition 3.1415
+                                }
+                            ]
+                            endPoint Solid {
+                                translation 0.1175 0 0
+                                children [
+                                HingeJoint {
+                                    jointParameters HingeJointParameters {
+                                    axis 0 0 1
+                                    anchor 0.096 0 0
+                                    }
+                                    device [
+                                    PositionSensor {
+                                        name "sensor4"
+                                    }
+                                    RotationalMotor {
+                                        name "joint4"
+                                        minPosition -3.1415
+                                        maxPosition 3.1415
+                                    }
+                                    ]
+                                    endPoint Solid {
+                                    translation 0.096 0 0
+                                    children [
+                                        HingeJoint {
+                                        jointParameters HingeJointParameters {
+                                            anchor 0.065 -0.0275 0
+                                        }
+                                        device [
+                                            PositionSensor {
+                                            name "sensor5"
+                                            }
+                                            RotationalMotor {
+                                            name "joint5"
+                                            minPosition -3.1415
+                                            maxPosition 3.1415
+                                            }
+                                        ]
+                                        endPoint Solid {
+                                            translation 0.065 -0.0275 0
+                                            rotation 0.5773509358554485 0.5773509358554485 0.5773489358556708 2.0944
+                                            children [
+                                            Shape {
+                                                appearance PBRAppearance {
+                                                roughness 1
+                                                metalness 0
+                                                textureTransform TextureTransform {
+                                                    rotation -1.5708
+                                                }
+                                                }
+                                                geometry DEF LINK5 Cylinder {
+                                                height 0.01
+                                                radius 0.01
+                                                }
+                                            }
+                                            ]
+                                            boundingObject USE LINK5
+                                            physics Physics {
+                                            density -1
+                                            mass 0.01
+                                            centerOfMass [
+                                                0 0 0
+                                            ]
+                                            inertiaMatrix [
+                                                5.980487500000001e-05 0.00031105018750000006 0.0002705421875000001
+                                                0 0 0
+                                            ]
+                                            }
+                                        }
+                                        }
+                                        Transform {
+                                        translation 0.02 -0.0125 0
+                                        rotation 1 0 0 0
+                                        children [
+                                            Shape {
+                                            appearance PBRAppearance {
+                                                baseColor 0.109804 0.443137 0.847059
+                                                roughness 1
+                                                metalness 0
+                                            }
+                                            geometry DEF LINK4 Box {
+                                                size 0.08 0.05 0.057
+                                            }
+                                            }
+                                        ]
+                                        }
+                                    ]
+                                    boundingObject Transform {
+                                        translation 0.02 -0.0125 0
+                                        rotation 1 0 0 0
+                                        children [
+                                        DEF LINK4 Box {
+                                            size 0.08 0.05 0.057
+                                        }
+                                        ]
+                                    }
+                                    physics Physics {
+                                        density -1
+                                        mass 0.333
+                                        centerOfMass [
+                                        0 0 0
+                                        ]
+                                        inertiaMatrix [
+                                        5.980487500000001e-05 0.00031105018750000006 0.0002705421875000001
+                                        0 0 0
+                                        ]
+                                    }
+                                    }
+                                }
+                                Transform {
+                                    translation 0.065 0 0
+                                    rotation 1 0 0 0
+                                    children [
+                                    Shape {
+                                        appearance PBRAppearance {
+                                        baseColor 0.960784 0.760784 0.0666667
+                                        roughness 1
+                                        metalness 0
+                                        }
+                                        geometry DEF LINK3 Box {
+                                        size 0.13 0.0251 0.0571
+                                        }
+                                    }
+                                    ]
+                                }
+                                ]
+                                boundingObject Transform {
+                                translation 0.065 0 0
+                                rotation 1 0 0 0
+                                children [
+                                    DEF LINK2 Box {
+                                    size 0.13 0.025 0.057
+                                    }
+                                ]
+                                }
+                                physics Physics {
+                                density -1
+                                mass 0.333
+                                centerOfMass [
+                                    0 0 0
+                                ]
+                                inertiaMatrix [
+                                    5.980487500000001e-05 0.00031105018750000006 0.0002705421875000001
+                                    0 0 0
+                                ]
+                                }
+                            }
+                            }
+                            Transform {
+                            translation 0.065 0 0
+                            rotation 1 0 0 0
+                            children [
+                                Shape {
+                                appearance PBRAppearance {
+                                    baseColor 0.180392 0.760784 0.494118
+                                    roughness 1
+                                    metalness 0
+                                }
+                                geometry DEF LINK2 Box {
+                                    size 0.13 0.025 0.057
+                                }
+                                }
+                            ]
+                            }
+                        ]
+                        boundingObject Transform {
+                            translation 0.065 0 0
+                            rotation 1 0 0 0
+                            children [
+                            USE LINK2
+                            ]
+                        }
+                        physics Physics {
+                            density -1
+                            mass 0.333
+                            centerOfMass [
+                            0 0 0
+                            ]
+                            inertiaMatrix [
+                            5.980487500000001e-05 0.00031105018750000006 0.0002705421875000001
+                            0 0 0
+                            ]
+                        }
+                        }
+                    }
+                    Shape {
+                        appearance PBRAppearance {
+                        baseColor 0.505882 0.239216 0.611765
+                        roughness 1
+                        metalness 0
+                        }
+                        geometry DEF LINK1 Box {
+                        size 0.04 0.04 0.015
+                        }
+                    }
+                    ]
+                    boundingObject USE LINK1
+                    physics Physics {
+                    density -1
+                    mass 0.333
+                    centerOfMass [
+                        0 0 0
+                    ]
+                    inertiaMatrix [
+                        3.65e-06 3.65e-06 6.4000000000000006e-06
+                        0 0 0
+                    ]
+                    }
+                }
+                }
+                Shape {
+                appearance PBRAppearance {
+                    baseColor 0.878431 0.105882 0.141176
+                    roughness 1
+                    metalness 0
+                }
+                geometry Box {
+                    size 0.09 0.09 0.11
+                }
+                }
+            ]
+            }
+        ]
+        name "FiveDOF"
+        controller IS controller
+        supervisor TRUE
+    }
+}
